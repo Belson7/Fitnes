@@ -2,232 +2,100 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!-- Ustawienie odpowiedniego skalowania na urządzeniach mobilnych -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profesjonalny Kalkulator Fitness</title>
-    <!-- Import nowoczesnej czcionki Inter z Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* --- Zmienne CSS dla Dark Mode i kolorów akcentujących --- */
-        :root {
-            --bg-color: #121212; /* Główny kolor tła (bardzo ciemny szary) */
-            --card-bg: #1e1e1e;  /* Kolor tła dla kart (nieco jaśniejszy) */
-            --text-main: #f5f5f5; /* Główny kolor tekstu */
-            --text-muted: #a0a0a0; /* Wyciszony tekst (np. dla opisów) */
-            --accent-color: #03dac6; /* Główny kolor akcentu (morski/teal) */
-            --accent-hover: #018786; /* Kolor akcentu przy najechaniu myszką */
-            --border-color: #333; /* Kolor obramowań */
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Elegancki cień dla kart */
-            --transition: all 0.3s ease; /* Płynne przejścia */
-        }
-
-        /* --- Reset podstawowych stylów --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* --- Główne style dla ciała strony --- */
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* --- Nagłówek strony --- */
-        header {
-            text-align: center;
-            padding: 3rem 1rem 2rem;
-            width: 100%;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* --- Kontener główny trzymający karty --- */
-        .container {
-            width: 100%;
-            max-width: 800px; /* Maksymalna szerokość dla czytelności na dużych ekranach */
-            padding: 0 1rem 3rem;
-            display: grid;
-            gap: 2rem; /* Odstępy między kartami */
-        }
-
-        /* --- Stylowe karty z efektem lekkiego unoszenia --- */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* Efekt uniesienia po najechaniu */
-            border-color: var(--accent-color); /* Zmiana koloru ramki przy hoverze */
-        }
-
-        .card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-
-        /* --- Wspólne style dla formularzy, przycisków i inputów, które przydadzą się w kolejnych krokach --- */
-        input, select, button {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            border-radius: 8px;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--border-color);
-            background-color: #2a2a2a;
-            color: var(--text-main);
-            width: 100%;
-            margin-bottom: 1rem;
-            transition: var(--transition);
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        button {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 0;
-        }
-
-        button:hover {
-            background-color: var(--accent-hover);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .result-box {
-            margin-top: 1.5rem;
-            padding: 1.5rem;
-            background-color: rgba(3, 218, 198, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-            display: none; /* Domyślnie ukryte, pokazane po obliczeniach */
-        }
-
-        /* --- Stopka --- */
-        footer {
-            margin-top: auto;
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            width: 100%;
-            border-top: 1px solid var(--border-color);
-        }
-
-        /* --- Responsywność dla mniejszych ekranów --- */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            .card {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-    <!-- Główny nagłówek aplikacji -->
     <header>
-        <h1>Kalkulator Fitness</h1>
-        <p>Twój osobisty asystent w drodze do lepszej sylwetki</p>
+        <h1><i class="fa-solid fa-dumbbell"></i> Kalkulator Fitness</h1>
+        <p>Twój asystent w drodze do wymarzonej sylwetki</p>
     </header>
 
-    <!-- Kontener na wszystkie sekcje kalkulatorów -->
     <main class="container">
         
-        <!-- Sekcja: Kalkulator BMI -->
         <section class="card" id="bmi-calculator">
-            <h2>1. Kalkulator BMI</h2>
-            <div class="placeholder-content">
-                <p style="color: var(--text-muted); font-style: italic;">
-                    <!-- Tu w kolejnych krokach dodamy formularz i logikę BMI -->
-                    Interfejs kalkulatora BMI zostanie dodany w kolejnym kroku.
-                </p>
+            <h2><i class="fa-solid fa-weight-scale"></i> Kalkulator BMI</h2>
+            
+            <div class="form-group">
+                <label for="bmi-weight"><i class="fa-solid fa-weight-hanging"></i> Waga (kg)</label>
+                <input type="number" id="bmi-weight" placeholder="Np. 75">
             </div>
+
+            <div class="form-group">
+                <label for="bmi-height"><i class="fa-solid fa-ruler-vertical"></i> Wzrost (cm)</label>
+                <input type="number" id="bmi-height" placeholder="Np. 180">
+            </div>
+
+            <button id="btn-bmi">Oblicz BMI <i class="fa-solid fa-arrow-right"></i></button>
+            <div class="result-box" id="bmi-result"></div>
         </section>
 
-        <!-- Sekcja: Kalkulator BMR -->
         <section class="card" id="bmr-calculator">
-            <h2>2. Zapotrzebowanie Kaloryczne (BMR)</h2>
-            <div class="placeholder-content">
-                <p style="color: var(--text-muted); font-style: italic;">
-                    <!-- Tu dodamy formularz i logikę BMR -->
-                    Interfejs kalkulatora BMR zostanie dodany w kolejnym kroku.
-                </p>
+            <h2><i class="fa-solid fa-fire"></i> Zapotrzebowanie (BMR)</h2>
+            
+            <div class="form-group">
+                <label for="bmr-gender"><i class="fa-solid fa-venus-mars"></i> Płeć</label>
+                <select id="bmr-gender">
+                    <option value="male">Mężczyzna</option>
+                    <option value="female">Kobieta</option>
+                </select>
             </div>
+
+            <div class="form-group">
+                <label for="bmr-age"><i class="fa-solid fa-calendar-days"></i> Wiek</label>
+                <input type="number" id="bmr-age" placeholder="Np. 25">
+            </div>
+
+            <div class="form-group">
+                <label for="bmr-weight"><i class="fa-solid fa-weight-hanging"></i> Waga (kg)</label>
+                <input type="number" id="bmr-weight" placeholder="Np. 75">
+            </div>
+
+            <div class="form-group">
+                <label for="bmr-height"><i class="fa-solid fa-ruler-vertical"></i> Wzrost (cm)</label>
+                <input type="number" id="bmr-height" placeholder="Np. 180">
+            </div>
+
+            <div class="form-group">
+                <label for="bmr-activity"><i class="fa-solid fa-person-running"></i> Aktywność fizyczna</label>
+                <select id="bmr-activity">
+                    <option value="1.2">Brak aktywności (siedzący tryb życia)</option>
+                    <option value="1.375">Niska aktywność (trening 1-3 dni/tyg.)</option>
+                    <option value="1.55">Umiarkowana aktywność (trening 3-5 dni/tyg.)</option>
+                    <option value="1.725">Wysoka aktywność (trening 6-7 dni/tyg.)</option>
+                    <option value="1.9">Bardzo wysoka aktywność (praca fizyczna/trening 2x dziennie)</option>
+                </select>
+            </div>
+
+            <button id="btn-bmr">Oblicz BMR <i class="fa-solid fa-arrow-right"></i></button>
+            <div class="result-box" id="bmr-result"></div>
         </section>
 
-        <!-- Sekcja: Licznik Makroskładników -->
         <section class="card" id="macros-calculator">
-            <h2>3. Podział Makroskładników</h2>
+            <h2><i class="fa-solid fa-chart-pie"></i> Podział Makroskładników</h2>
             <div class="placeholder-content">
-                <p style="color: var(--text-muted); font-style: italic;">
-                    <!-- Tu dodamy logikę dzielenia kalorii na białka, tłuszcze i węgle -->
-                    Interfejs dla makroskładników zostanie dodany w kolejnym kroku.
-                </p>
+                <p>Interfejs zostanie dodany w kolejnym kroku.</p>
             </div>
         </section>
 
-        <!-- Sekcja: Spalone Kalorie -->
         <section class="card" id="calories-burned">
-            <h2>4. Kalkulator Spalonych Kalorii</h2>
+            <h2><i class="fa-solid fa-stopwatch"></i> Spalone Kalorie</h2>
             <div class="placeholder-content">
-                <p style="color: var(--text-muted); font-style: italic;">
-                    <!-- Tu dodamy wybór ćwiczeń i czas ich trwania -->
-                    Interfejs do obliczania spalonych kalorii zostanie dodany w kolejnym kroku.
-                </p>
+                <p>Interfejs zostanie dodany w kolejnym kroku.</p>
             </div>
         </section>
 
     </main>
 
-    <!-- Stopka strony -->
     <footer>
         <p>&copy; 2026 Profesjonalny Kalkulator Fitness. Stworzone z pasją.</p>
     </footer>
 
-    <!-- Skrypty JS będą dodawane tutaj w późniejszych krokach -->
     <script>
-        // Inicjalizacja pliku JavaScript
-        console.log("Krok 1: Szkielet i style zostały pomyślnie załadowane.");
     </script>
 </body>
 </html>
