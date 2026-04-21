@@ -9,139 +9,125 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
     <header>
         <h1><i class="fa-solid fa-dumbbell"></i> Kalkulator Fitness</h1>
         <p>Twój asystent w drodze do wymarzonej sylwetki</p>
     </header>
 
     <main class="container">
-        
-        <section class="card" id="bmi-calculator">
-            <h2><i class="fa-solid fa-weight-scale"></i> Kalkulator BMI</h2>
-            
-            <div class="form-group">
-                <label for="bmi-weight"><i class="fa-solid fa-weight-hanging"></i> Waga (kg)</label>
-                <input type="number" id="bmi-weight" placeholder="Np. 75">
-            </div>
-
-            <div class="form-group">
-                <label for="bmi-height"><i class="fa-solid fa-ruler-vertical"></i> Wzrost (cm)</label>
-                <input type="number" id="bmi-height" placeholder="Np. 180">
-            </div>
-
-            <button id="btn-bmi">Oblicz BMI <i class="fa-solid fa-arrow-right"></i></button>
-            <div class="result-box" id="bmi-result"></div>
-        </section>
-
-        <section class="card" id="bmr-calculator">
-            <h2><i class="fa-solid fa-fire"></i> Zapotrzebowanie (BMR)</h2>
-            
-            <div class="form-group">
-                <label for="bmr-gender"><i class="fa-solid fa-venus-mars"></i> Płeć</label>
-                <select id="bmr-gender">
-                    <option value="male">Mężczyzna</option>
-                    <option value="female">Kobieta</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="bmr-age"><i class="fa-solid fa-calendar-days"></i> Wiek</label>
-                <input type="number" id="bmr-age" placeholder="Np. 25">
-            </div>
-
-            <div class="form-group">
-                <label for="bmr-weight"><i class="fa-solid fa-weight-hanging"></i> Waga (kg)</label>
-                <input type="number" id="bmr-weight" placeholder="Np. 75">
-            </div>
-
-            <div class="form-group">
-                <label for="bmr-height"><i class="fa-solid fa-ruler-vertical"></i> Wzrost (cm)</label>
-                <input type="number" id="bmr-height" placeholder="Np. 180">
-            </div>
-
-            <div class="form-group">
-                <label for="bmr-activity"><i class="fa-solid fa-person-running"></i> Aktywność fizyczna</label>
-                <select id="bmr-activity">
-                    <option value="1.2">Brak aktywności (siedzący tryb życia)</option>
-                    <option value="1.375">Niska aktywność (trening 1-3 dni/tyg.)</option>
-                    <option value="1.55">Umiarkowana aktywność (trening 3-5 dni/tyg.)</option>
-                    <option value="1.725">Wysoka aktywność (trening 6-7 dni/tyg.)</option>
-                    <option value="1.9">Bardzo wysoka aktywność (praca fizyczna/trening 2x dziennie)</option>
-                </select>
-            </div>
-
-            <button id="btn-bmr">Oblicz BMR <i class="fa-solid fa-arrow-right"></i></button>
-            <div class="result-box" id="bmr-result"></div>
-        </section>
-
-        <section class="card" id="macros-calculator">
-            <h2><i class="fa-solid fa-bullseye"></i> Cel i Makroskładniki</h2>
-            
-            <div class="form-group">
-                <label for="macro-goal"><i class="fa-solid fa-flag-checkered"></i> Wybierz swój cel</label>
-                <select id="macro-goal">
-                    <option value="lose">Schudnij (-500 kcal)</option>
-                    <option value="maintain">Utrzymaj wagę (0 kcal)</option>
-                    <option value="gain">Zbuduj masę (+500 kcal)</option>
-                </select>
-            </div>
-            
-            <button id="btn-macros">Oblicz Makroskładniki <i class="fa-solid fa-arrow-right"></i></button>
-            <div class="result-box" id="macros-result"></div>
-        </section>
-
-        <section class="card" id="calories-burned">
-            <h2><i class="fa-solid fa-stopwatch"></i> Spalone Kalorie</h2>
-            
-            <div class="form-group">
-                <label for="exercise-type"><i class="fa-solid fa-person-swimming"></i> Ćwiczenie</label>
-                <select id="exercise-type">
-                    <option value="8">Bieganie (8 kcal/min)</option>
-                    <option value="5">Siłownia (5 kcal/min)</option>
-                    <option value="10">Pływanie (10 kcal/min)</option>
-                    <option value="7">Rower (7 kcal/min)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="exercise-time"><i class="fa-regular fa-clock"></i> Czas (w minutach)</label>
-                <input type="number" id="exercise-time" placeholder="Np. 45">
-            </div>
-
-            <button id="btn-exercise">Dodaj do dziennika <i class="fa-solid fa-plus"></i></button>
-            
-            <div class="result-box" id="exercise-list-box" style="display: block; background: transparent; border: none; padding: 0; margin-top: 1.5rem;">
-                <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">Dziennik Aktywności:</h3>
-                <ul id="exercise-list" style="list-style: none; padding: 0;"></ul>
-                <div style="margin-top: 1rem; font-weight: 600; color: var(--text-primary); font-size: 1.1rem;">Łącznie spalono: <span id="total-burned" style="color: #ef4444;">0</span> kcal</div>
-            </div>
-        </section>
-
-        <section class="card" id="training-plans">
-            <h2><i class="fa-solid fa-list-check"></i> Plany Treningowe</h2>
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                <div style="background: rgba(15, 23, 42, 0.6); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">FBW dla początkujących</h3>
-                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
-                        <li>Przysiady ze sztangą (3x10)</li>
-                        <li>Wyciskanie na ławce (3x10)</li>
-                        <li>Martwy ciąg (3x8)</li>
-                        <li>Wiosłowanie sztangą (3x10)</li>
-                    </ul>
+        <div class="top-row">
+            <section class="card" id="bmi-calculator">
+                <h2><i class="fa-solid fa-weight-scale"></i> Kalkulator BMI</h2>
+                <div class="form-group">
+                    <label for="bmi-weight"><i class="fa-solid fa-weight-hanging"></i> Waga (kg)</label>
+                    <input type="number" id="bmi-weight" placeholder="Np. 75">
                 </div>
-                <div style="background: rgba(15, 23, 42, 0.6); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Trening Cardio w domu</h3>
-                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
-                        <li>Pajacyki (60s)</li>
-                        <li>Bieg w miejscu (60s)</li>
-                        <li>Padnij-powstań (Burpees) (45s)</li>
-                        <li>Wykroki (60s)</li>
-                    </ul>
+                <div class="form-group">
+                    <label for="bmi-height"><i class="fa-solid fa-ruler-vertical"></i> Wzrost (cm)</label>
+                    <input type="number" id="bmi-height" placeholder="Np. 180">
                 </div>
-            </div>
-        </section>
+                <button id="btn-bmi">Oblicz BMI <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="result-box" id="bmi-result"></div>
+            </section>
 
+            <section class="card" id="bmr-calculator">
+                <h2><i class="fa-solid fa-fire"></i> Zapotrzebowanie (BMR)</h2>
+                <div class="form-group">
+                    <label for="bmr-gender"><i class="fa-solid fa-venus-mars"></i> Płeć</label>
+                    <select id="bmr-gender">
+                        <option value="male">Mężczyzna</option>
+                        <option value="female">Kobieta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bmr-age"><i class="fa-solid fa-calendar-days"></i> Wiek</label>
+                    <input type="number" id="bmr-age" placeholder="Np. 25">
+                </div>
+                <div class="form-group">
+                    <label for="bmr-weight"><i class="fa-solid fa-weight-hanging"></i> Waga (kg)</label>
+                    <input type="number" id="bmr-weight" placeholder="Np. 75">
+                </div>
+                <div class="form-group">
+                    <label for="bmr-height"><i class="fa-solid fa-ruler-vertical"></i> Wzrost (cm)</label>
+                    <input type="number" id="bmr-height" placeholder="Np. 180">
+                </div>
+                <div class="form-group">
+                    <label for="bmr-activity"><i class="fa-solid fa-person-running"></i> Aktywność fizyczna</label>
+                    <select id="bmr-activity">
+                        <option value="1.2">Brak aktywności (siedzący tryb życia)</option>
+                        <option value="1.375">Niska aktywność (trening 1-3 dni/tyg.)</option>
+                        <option value="1.55">Umiarkowana aktywność (trening 3-5 dni/tyg.)</option>
+                        <option value="1.725">Wysoka aktywność (trening 6-7 dni/tyg.)</option>
+                        <option value="1.9">Bardzo wysoka aktywność (praca fizyczna/trening 2x dziennie)</option>
+                    </select>
+                </div>
+                <button id="btn-bmr">Oblicz BMR <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="result-box" id="bmr-result"></div>
+            </section>
+        </div>
+
+        <div class="bottom-row">
+            <section class="card" id="macros-calculator">
+                <h2><i class="fa-solid fa-bullseye"></i> Cel i Makroskładniki</h2>
+                <div class="form-group">
+                    <label for="macro-goal"><i class="fa-solid fa-flag-checkered"></i> Wybierz swój cel</label>
+                    <select id="macro-goal">
+                        <option value="lose">Schudnij (-500 kcal)</option>
+                        <option value="maintain">Utrzymaj wagę (0 kcal)</option>
+                        <option value="gain">Zbuduj masę (+500 kcal)</option>
+                    </select>
+                </div>
+                <button id="btn-macros">Oblicz Makroskładniki <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="result-box" id="macros-result"></div>
+            </section>
+
+            <section class="card" id="training-input">
+                <h2><i class="fa-solid fa-dumbbell"></i> Twój Trening</h2>
+                <div class="form-group">
+                    <label for="workout-type"><i class="fa-solid fa-person-running"></i> Ćwiczenie</label>
+                    <select id="workout-type">
+                        <optgroup label="Cardio">
+                            <option value="10">Bieżnia (10 kcal / min)</option>
+                            <option value="8">Boks (8 kcal / min)</option>
+                            <option value="9">Pływanie (9 kcal / min)</option>
+                            <option value="7">Rowerek (7 kcal / min)</option>
+                            <option value="11">Schody (11 kcal / min)</option>
+                            <option value="12">Skakanka (12 kcal / min)</option>
+                        </optgroup>
+                        <optgroup label="Domowe">
+                            <option value="0.4">Brzuszki (0.4 kcal / powt.)</option>
+                            <option value="2.5">Burpees (2.5 kcal / powt.)</option>
+                            <option value="0.5">Pajacyki (0.5 kcal / powt.)</option>
+                            <option value="0.5">Pompki (0.5 kcal / powt.)</option>
+                        </optgroup>
+                        <optgroup label="Siłowe">
+                            <option value="1.5">Bench Press (1.5 kcal / powt.)</option>
+                            <option value="1.5">Martwy ciąg (1.5 kcal / powt.)</option>
+                            <option value="5">Plank (5 kcal / min)</option>
+                            <option value="2">Podciąganie (2 kcal / powt.)</option>
+                            <option value="1">Przysiady (1 kcal / powt.)</option>
+                            <option value="1.2">Wyciskanie hantli (1.2 kcal / powt.)</option>
+                            <option value="1">Wykroki (1 kcal / powt.)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="workout-amount"><i class="fa-solid fa-hashtag"></i> Liczba powtórzeń / minut</label>
+                    <input type="number" id="workout-amount" placeholder="Np. 15">
+                </div>
+                <button id="btn-workout">Dodaj do treningu <i class="fa-solid fa-plus"></i></button>
+            </section>
+
+            <section class="card" id="calories-burned">
+                <h2><i class="fa-solid fa-fire"></i> Spalone Kalorie</h2>
+                <div class="list-container" id="workout-list-box">
+                    <ul id="workout-list"></ul>
+                    <div class="total-burned-box">
+                        Łącznie spalono: <span id="total-burned">0</span> kcal
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
