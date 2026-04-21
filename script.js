@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 BMR (Spoczynkowe): <strong>${Math.round(bmrBase)} kcal</strong>
             </div>
             <div style="color: var(--text-primary);">
-                TDEE (Całkowite z aktywnością): <strong>${Math.round(currentBmr)} kcal</strong>
+                TDEE (Całkowite): <strong>${Math.round(currentBmr)} kcal</strong>
             </div>
         `;
     });
@@ -146,35 +146,40 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     });
 
-    const btnExercise = document.getElementById('btn-exercise');
-    const exerciseType = document.getElementById('exercise-type');
-    const exerciseTime = document.getElementById('exercise-time');
-    const exerciseList = document.getElementById('exercise-list');
+    const btnWorkout = document.getElementById('btn-workout');
+    const workoutType = document.getElementById('workout-type');
+    const workoutAmount = document.getElementById('workout-amount');
+    const workoutList = document.getElementById('workout-list');
     const totalBurnedEl = document.getElementById('total-burned');
-    
+
     let totalBurned = 0;
 
-    btnExercise.addEventListener('click', () => {
-        const time = parseFloat(exerciseTime.value);
-        const kcalPerMin = parseFloat(exerciseType.value);
-        const exerciseName = exerciseType.options[exerciseType.selectedIndex].text.split(' (')[0];
+    workoutType.addEventListener('change', () => {
+        const selectedText = workoutType.options[workoutType.selectedIndex].text;
+        if (selectedText.includes('min')) {
+            workoutAmount.placeholder = 'Liczba minut (np. 15)';
+        } else {
+            workoutAmount.placeholder = 'Liczba powtórzeń (np. 15)';
+        }
+    });
 
-        if (isNaN(time) || time <= 0) {
+    btnWorkout.addEventListener('click', () => {
+        const amount = parseFloat(workoutAmount.value);
+        const kcalPerUnit = parseFloat(workoutType.value);
+        const workoutName = workoutType.options[workoutType.selectedIndex].text.split(' (')[0];
+
+        if (isNaN(amount) || amount <= 0) {
             return;
         }
 
-        const burned = Math.round(time * kcalPerMin);
+        const burned = Math.round(amount * kcalPerUnit);
         totalBurned += burned;
 
         const li = document.createElement('li');
-        li.style.padding = '0.5rem';
-        li.style.borderBottom = '1px solid var(--border)';
-        li.style.display = 'flex';
-        li.style.justifyContent = 'space-between';
-        li.innerHTML = `<span>${exerciseName} (${time} min)</span> <span style="color: #ef4444; font-weight: 600;">+${burned} kcal</span>`;
+        li.innerHTML = `<span><i class="fa-solid fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i>${workoutName} x${amount}</span> <span style="color: #ef4444; font-weight: 600;">+${burned} kcal</span>`;
         
-        exerciseList.appendChild(li);
+        workoutList.appendChild(li);
         totalBurnedEl.textContent = totalBurned;
-        exerciseTime.value = '';
+        workoutAmount.value = '';
     });
 });
