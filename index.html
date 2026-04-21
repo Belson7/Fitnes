@@ -76,16 +76,69 @@
         </section>
 
         <section class="card" id="macros-calculator">
-            <h2><i class="fa-solid fa-chart-pie"></i> Podział Makroskładników</h2>
-            <div class="placeholder-content">
-                <p>Interfejs zostanie dodany w kolejnym kroku.</p>
+            <h2><i class="fa-solid fa-bullseye"></i> Cel i Makroskładniki</h2>
+            
+            <div class="form-group">
+                <label for="macro-goal"><i class="fa-solid fa-flag-checkered"></i> Wybierz swój cel</label>
+                <select id="macro-goal">
+                    <option value="lose">Schudnij (-500 kcal)</option>
+                    <option value="maintain">Utrzymaj wagę (0 kcal)</option>
+                    <option value="gain">Zbuduj masę (+500 kcal)</option>
+                </select>
             </div>
+            
+            <button id="btn-macros">Oblicz Makroskładniki <i class="fa-solid fa-arrow-right"></i></button>
+            <div class="result-box" id="macros-result"></div>
         </section>
 
         <section class="card" id="calories-burned">
             <h2><i class="fa-solid fa-stopwatch"></i> Spalone Kalorie</h2>
-            <div class="placeholder-content">
-                <p>Interfejs zostanie dodany w kolejnym kroku.</p>
+            
+            <div class="form-group">
+                <label for="exercise-type"><i class="fa-solid fa-person-swimming"></i> Ćwiczenie</label>
+                <select id="exercise-type">
+                    <option value="8">Bieganie (8 kcal/min)</option>
+                    <option value="5">Siłownia (5 kcal/min)</option>
+                    <option value="10">Pływanie (10 kcal/min)</option>
+                    <option value="7">Rower (7 kcal/min)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exercise-time"><i class="fa-regular fa-clock"></i> Czas (w minutach)</label>
+                <input type="number" id="exercise-time" placeholder="Np. 45">
+            </div>
+
+            <button id="btn-exercise">Dodaj do dziennika <i class="fa-solid fa-plus"></i></button>
+            
+            <div class="result-box" id="exercise-list-box" style="display: block; background: transparent; border: none; padding: 0; margin-top: 1.5rem;">
+                <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">Dziennik Aktywności:</h3>
+                <ul id="exercise-list" style="list-style: none; padding: 0;"></ul>
+                <div style="margin-top: 1rem; font-weight: 600; color: var(--text-primary); font-size: 1.1rem;">Łącznie spalono: <span id="total-burned" style="color: #ef4444;">0</span> kcal</div>
+            </div>
+        </section>
+
+        <section class="card" id="training-plans">
+            <h2><i class="fa-solid fa-list-check"></i> Plany Treningowe</h2>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">FBW dla początkujących</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                        <li>Przysiady ze sztangą (3x10)</li>
+                        <li>Wyciskanie na ławce (3x10)</li>
+                        <li>Martwy ciąg (3x8)</li>
+                        <li>Wiosłowanie sztangą (3x10)</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Trening Cardio w domu</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                        <li>Pajacyki (60s)</li>
+                        <li>Bieg w miejscu (60s)</li>
+                        <li>Padnij-powstań (Burpees) (45s)</li>
+                        <li>Wykroki (60s)</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -95,7 +148,6 @@
         <p>&copy; 2026 Profesjonalny Kalkulator Fitness. Stworzone z pasją.</p>
     </footer>
 
-    <script>
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
