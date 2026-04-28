@@ -3,19 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesjonalny Kalkulator Fitness</title>
+    <title>Fitness Pro - Zaawansowana Platforma</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round">
+                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-sun"></i>
+            </div>
+        </label>
+    </div>
+
     <header>
-        <h1><i class="fa-solid fa-dumbbell"></i> Kalkulator Fitness</h1>
-        <p>Twój asystent w drodze do wymarzonej sylwetki</p>
+        <h1><i class="fa-solid fa-dumbbell"></i> Fitness Pro</h1>
+        <p>Zaawansowana Platforma Treningowa i Dietetyczna</p>
     </header>
 
     <main class="container">
-        <div class="top-row">
+        <div class="grid-layout">
+            <section class="card" id="user-profile">
+                <h2><i class="fa-solid fa-user"></i> Mój Profil</h2>
+                <div id="greeting-box" style="display: none; margin-bottom: 1.5rem;"></div>
+                <div class="form-group">
+                    <label for="profile-name"><i class="fa-solid fa-signature"></i> Imię</label>
+                    <input type="text" id="profile-name" placeholder="Twoje imię">
+                </div>
+                <div class="form-group">
+                    <label for="profile-age"><i class="fa-solid fa-calendar"></i> Wiek</label>
+                    <input type="number" id="profile-age" placeholder="Twój wiek">
+                </div>
+                <div class="form-group">
+                    <label for="profile-goal"><i class="fa-solid fa-bullseye"></i> Główny cel</label>
+                    <input type="text" id="profile-goal" placeholder="Np. Schudnąć 5 kg">
+                </div>
+                <button id="btn-save-profile">Zapisz Profil <i class="fa-solid fa-floppy-disk"></i></button>
+            </section>
+
+            <section class="card" id="advanced-stats">
+                <h2><i class="fa-solid fa-chart-pie"></i> Dzisiejszy Bilans</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-label">BMR / TDEE</span>
+                        <span class="stat-value" id="stat-bmr">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Zjedzono</span>
+                        <span class="stat-value text-danger" id="stat-eaten">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Spalono</span>
+                        <span class="stat-value text-success" id="stat-burned">0</span>
+                    </div>
+                </div>
+                <div class="stat-result-box">
+                    <span class="stat-result-label">Wynik końcowy:</span>
+                    <span class="stat-result-value" id="stat-final">0 kcal</span>
+                </div>
+            </section>
+
             <section class="card" id="bmi-calculator">
                 <h2><i class="fa-solid fa-weight-scale"></i> Kalkulator BMI</h2>
                 <div class="form-group">
@@ -41,34 +91,47 @@
                 </div>
                 <div class="form-group">
                     <label for="bmr-age"><i class="fa-solid fa-calendar-days"></i> Wiek</label>
-                    <input type="number" id="bmr-age" placeholder="Np. 25">
-                </div>
-                <div class="form-group">
-                    <label for="bmr-weight"><i class="fa-solid fa-weight-hanging"></i> Waga (kg)</label>
-                    <input type="number" id="bmr-weight" placeholder="Np. 75">
-                </div>
-                <div class="form-group">
-                    <label for="bmr-height"><i class="fa-solid fa-ruler-vertical"></i> Wzrost (cm)</label>
-                    <input type="number" id="bmr-height" placeholder="Np. 180">
+                    <input type="number" id="bmr-age" placeholder="Twój wiek">
                 </div>
                 <div class="form-group">
                     <label for="bmr-activity"><i class="fa-solid fa-person-running"></i> Aktywność fizyczna</label>
                     <select id="bmr-activity">
-                        <option value="1.2">Brak aktywności (siedzący tryb życia)</option>
-                        <option value="1.375">Niska aktywność (trening 1-3 dni/tyg.)</option>
-                        <option value="1.55">Umiarkowana aktywność (trening 3-5 dni/tyg.)</option>
-                        <option value="1.725">Wysoka aktywność (trening 6-7 dni/tyg.)</option>
-                        <option value="1.9">Bardzo wysoka aktywność (praca fizyczna/trening 2x dziennie)</option>
+                        <option value="1.2">Brak aktywności</option>
+                        <option value="1.375">Niska aktywność</option>
+                        <option value="1.55">Umiarkowana</option>
+                        <option value="1.725">Wysoka aktywność</option>
+                        <option value="1.9">Bardzo wysoka</option>
                     </select>
                 </div>
                 <button id="btn-bmr">Oblicz BMR <i class="fa-solid fa-arrow-right"></i></button>
                 <div class="result-box" id="bmr-result"></div>
             </section>
-        </div>
 
-        <div class="bottom-row">
+            <section class="card" id="weight-progress">
+                <h2><i class="fa-solid fa-chart-line"></i> Wizualizacja Postępu</h2>
+                <div class="form-group">
+                    <label for="start-weight"><i class="fa-solid fa-hourglass-start"></i> Waga początkowa (kg)</label>
+                    <input type="number" id="start-weight" placeholder="Np. 90">
+                </div>
+                <div class="form-group">
+                    <label for="current-weight"><i class="fa-solid fa-weight-scale"></i> Obecna waga (kg)</label>
+                    <input type="number" id="current-weight" placeholder="Np. 85">
+                </div>
+                <div class="form-group">
+                    <label for="target-weight"><i class="fa-solid fa-bullseye"></i> Cel wagowy (kg)</label>
+                    <input type="number" id="target-weight" placeholder="Np. 75">
+                </div>
+                <button id="btn-progress">Aktualizuj postęp <i class="fa-solid fa-rotate"></i></button>
+                <div class="progress-container">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="weight-progress-fill"></div>
+                    </div>
+                    <p class="progress-text" id="weight-progress-text">0% zrealizowanego celu</p>
+                </div>
+            </section>
+
             <section class="card" id="macros-calculator">
-                <h2><i class="fa-solid fa-bullseye"></i> Cel i Makroskładniki</h2>
+                <h2><i class="fa-solid fa-apple-whole"></i> Makroskładniki</h2>
                 <div class="form-group">
                     <label for="macro-goal"><i class="fa-solid fa-flag-checkered"></i> Wybierz swój cel</label>
                     <select id="macro-goal">
@@ -77,53 +140,195 @@
                         <option value="gain">Zbuduj masę (+500 kcal)</option>
                     </select>
                 </div>
-                <button id="btn-macros">Oblicz Makroskładniki <i class="fa-solid fa-arrow-right"></i></button>
+                <button id="btn-macros">Oblicz Makroskładniki <i class="fa-solid fa-calculator"></i></button>
                 <div class="result-box" id="macros-result"></div>
             </section>
 
-            <section class="card" id="training-input">
-                <h2><i class="fa-solid fa-dumbbell"></i> Twój Trening</h2>
+            <section class="card" id="meal-log">
+                <h2><i class="fa-solid fa-utensils"></i> Dziennik Posiłków</h2>
                 <div class="form-group">
+                    <label for="food-name"><i class="fa-solid fa-burger"></i> Produkt / Posiłek</label>
+                    <input type="text" id="food-name" placeholder="Np. Płatki owsiane">
+                </div>
+                <div class="form-group">
+                    <label for="food-kcal"><i class="fa-solid fa-fire-flame-curved"></i> Kalorie</label>
+                    <input type="number" id="food-kcal" placeholder="Np. 350">
+                </div>
+                <button id="btn-food">Dodaj posiłek <i class="fa-solid fa-plus"></i></button>
+                <div class="list-container">
+                    <ul id="food-list"></ul>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="kcal-progress-fill"></div>
+                    </div>
+                    <p class="progress-text" id="kcal-progress-text">Zjedzono: 0 / 0 kcal</p>
+                </div>
+            </section>
+
+            <section class="card" id="hydration">
+                <h2><i class="fa-solid fa-droplet"></i> Analiza Nawodnienia</h2>
+                <p class="hydration-desc">Cel dzienny: 2 litry (8 szklanek)</p>
+                <div class="glasses-container" id="glasses-container">
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="1"></i>
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="2"></i>
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="3"></i>
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="4"></i>
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="5"></i>
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="6"></i>
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="7"></i>
+                    <i class="fa-solid fa-glass-water glass-icon" data-index="8"></i>
+                </div>
+                <p class="hydration-status" id="hydration-status">Wypito: 0 ml / 2000 ml</p>
+            </section>
+
+            <section class="card" id="supplements">
+                <h2><i class="fa-solid fa-pills"></i> Plan Suplementacji</h2>
+                <div class="form-group">
+                    <label for="supp-goal"><i class="fa-solid fa-bullseye"></i> Główny cel</label>
+                    <select id="supp-goal">
+                        <option value="mass">Budowa masy mięśniowej</option>
+                        <option value="reduction">Redukcja tkanki tłuszczowej</option>
+                        <option value="health">Zdrowie i witalność</option>
+                    </select>
+                </div>
+                <button id="btn-supplements">Generuj plan <i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                <div class="result-box" id="supplements-result"></div>
+            </section>
+
+            <section class="card" id="training">
+                <h2><i class="fa-solid fa-stopwatch"></i> Trening i Timer</h2>
+                <div class="timer-container">
+                    <div class="timer-display" id="timer-display">00:00</div>
+                    <div class="timer-controls">
+                        <button class="timer-btn" id="btn-timer-start"><i class="fa-solid fa-play"></i></button>
+                        <button class="timer-btn" id="btn-timer-stop"><i class="fa-solid fa-pause"></i></button>
+                        <button class="timer-btn" id="btn-timer-reset"><i class="fa-solid fa-rotate-left"></i></button>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 1.5rem;">
                     <label for="workout-type"><i class="fa-solid fa-person-running"></i> Ćwiczenie</label>
                     <select id="workout-type">
-                        <optgroup label="Cardio">
-                            <option value="10">Bieżnia (10 kcal / min)</option>
-                            <option value="8">Boks (8 kcal / min)</option>
-                            <option value="9">Pływanie (9 kcal / min)</option>
-                            <option value="7">Rowerek (7 kcal / min)</option>
-                            <option value="11">Schody (11 kcal / min)</option>
-                            <option value="12">Skakanka (12 kcal / min)</option>
-                        </optgroup>
-                        <optgroup label="Domowe">
-                            <option value="0.4">Brzuszki (0.4 kcal / powt.)</option>
-                            <option value="2.5">Burpees (2.5 kcal / powt.)</option>
-                            <option value="0.5">Pajacyki (0.5 kcal / powt.)</option>
-                            <option value="0.5">Pompki (0.5 kcal / powt.)</option>
-                        </optgroup>
-                        <optgroup label="Siłowe">
-                            <option value="1.5">Bench Press (1.5 kcal / powt.)</option>
-                            <option value="1.5">Martwy ciąg (1.5 kcal / powt.)</option>
-                            <option value="5">Plank (5 kcal / min)</option>
-                            <option value="2">Podciąganie (2 kcal / powt.)</option>
-                            <option value="1">Przysiady (1 kcal / powt.)</option>
-                            <option value="1.2">Wyciskanie hantli (1.2 kcal / powt.)</option>
-                            <option value="1">Wykroki (1 kcal / powt.)</option>
-                        </optgroup>
+                        <option value="10">Bieżnia (10 kcal / min)</option>
+                        <option value="8">Boks (8 kcal / min)</option>
+                        <option value="9">Pływanie (9 kcal / min)</option>
+                        <option value="1.5">Bench Press (1.5 kcal / powt.)</option>
+                        <option value="1">Przysiady (1 kcal / powt.)</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="workout-amount"><i class="fa-solid fa-hashtag"></i> Liczba powtórzeń / minut</label>
+                    <label for="workout-amount"><i class="fa-solid fa-hashtag"></i> Liczba (min/powt)</label>
                     <input type="number" id="workout-amount" placeholder="Np. 15">
                 </div>
                 <button id="btn-workout">Dodaj do treningu <i class="fa-solid fa-plus"></i></button>
-            </section>
-
-            <section class="card" id="calories-burned">
-                <h2><i class="fa-solid fa-fire"></i> Spalone Kalorie</h2>
-                <div class="list-container" id="workout-list-box">
+                
+                <div class="list-container" style="margin-top: 1.5rem;">
                     <ul id="workout-list"></ul>
                     <div class="total-burned-box">
-                        Łącznie spalono: <span id="total-burned">0</span> kcal
+                        Spalono: <span id="total-burned">0</span> kcal
+                    </div>
+                </div>
+            </section>
+
+            <section class="card" id="onerm-calculator">
+                <h2><i class="fa-solid fa-trophy"></i> Kalkulator 1RM</h2>
+                <div class="form-group">
+                    <label for="onerm-weight"><i class="fa-solid fa-weight-hanging"></i> Podniesiony ciężar (kg)</label>
+                    <input type="number" id="onerm-weight" placeholder="Np. 100">
+                </div>
+                <div class="form-group">
+                    <label for="onerm-reps"><i class="fa-solid fa-rotate-right"></i> Liczba powtórzeń</label>
+                    <input type="number" id="onerm-reps" placeholder="Np. 5">
+                </div>
+                <button id="btn-onerm">Oblicz 1RM <i class="fa-solid fa-calculator"></i></button>
+                <div class="result-box" id="onerm-result"></div>
+            </section>
+
+            <section class="card full-width" id="exercise-atlas">
+                <h2><i class="fa-solid fa-book-open"></i> Atlas Ćwiczeń</h2>
+                
+                <h3 class="atlas-category"><i class="fa-solid fa-child-reaching"></i> Klatka Piersiowa</h3>
+                <div class="atlas-grid">
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wyciskanie sztangi leżąc</h3>
+                        <p>Podstawowe ćwiczenie na klatkę. Ściągnij łopatki, stopy stabilnie na ziemi, sztangę opuszczaj na wysokość mostka.</p>
+                        <a href="https://www.youtube.com/results?search_query=wyciskanie+sztangi+le%C5%BC%C4%85c+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Rozpiętki z hantlami</h3>
+                        <p>Świetne ćwiczenie rozciągające klatkę. Wykonuj ruch po łuku, lekko zgięte łokcie, maksymalne rozciągnięcie w dolnej fazie.</p>
+                        <a href="https://www.youtube.com/results?search_query=rozpi%C4%99tki+hantlami+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wyciskanie hantli (skos)</h3>
+                        <p>Angażuje górną część klatki. Ławka pod kątem 30-45 stopni. Prowadź hantle nad klatką piersiową, kontroluj opuszczanie.</p>
+                        <a href="https://www.youtube.com/results?search_query=wyciskanie+hantli+skos+dodatni+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <h3 class="atlas-category"><i class="fa-solid fa-person"></i> Plecy</h3>
+                <div class="atlas-grid">
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Martwy ciąg</h3>
+                        <p>Złożone ćwiczenie angażujące cały tył ciała. Pamiętaj o prostych plecach, napiętym brzuchu i prowadzeniu sztangi blisko nóg.</p>
+                        <a href="https://www.youtube.com/results?search_query=martwy+ci%C4%85g+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wiosłowanie sztangą</h3>
+                        <p>Buduje grubość pleców. Pochyl tułów, zachowaj proste plecy i przyciągaj sztangę do dolnej części brzucha.</p>
+                        <a href="https://www.youtube.com/results?search_query=wios%C5%82owanie+sztang%C4%85+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-child-reaching"></i> Podciąganie na drążku</h3>
+                        <p>Rozwija szerokość pleców. Pełny zakres ruchu, od zwisu do brody ponad drążkiem. Nie bujaj ciałem w trakcie ruchu.</p>
+                        <a href="https://www.youtube.com/results?search_query=podci%C4%85ganie+na+dr%C4%85%C5%BCku+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <h3 class="atlas-category"><i class="fa-solid fa-person-walking"></i> Nogi</h3>
+                <div class="atlas-grid">
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Przysiad ze sztangą</h3>
+                        <p>Królowa ćwiczeń na dolne partie. Trzymaj klatkę wypchniętą, kolana w linii palców i schodź płynnie poniżej kąta prostego.</p>
+                        <a href="https://www.youtube.com/results?search_query=przysiad+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wyciskanie na suwnicy</h3>
+                        <p>Świetne na mięśnie czworogłowe. Stopy na szerokość barków, nie blokuj kolan w pełnym wyproście, w pełni kontroluj ciężar.</p>
+                        <a href="https://www.youtube.com/results?search_query=wyciskanie+na+suwnicy+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wykroki z hantlami</h3>
+                        <p>Ćwiczenie na nogi i pośladki. Trzymaj proste plecy, kolano nogi zakrocznej blisko ziemi, nie wychodź kolanem poza palce.</p>
+                        <a href="https://www.youtube.com/results?search_query=wykroki+z+hantlami+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <h3 class="atlas-category"><i class="fa-solid fa-person-arms-up"></i> Barki</h3>
+                <div class="atlas-grid">
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wyciskanie żołnierskie</h3>
+                        <p>Buduje masę obręczy barkowej. Sztanga oparta o obojczyki, napięte pośladki i brzuch, wyciskaj ciężar nad głowę.</p>
+                        <a href="https://www.youtube.com/results?search_query=wyciskanie+%C5%BCo%C5%82nierskie+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wznosy ramion bokiem</h3>
+                        <p>Izolacja bocznego aktonu barku. Lekko zgięte łokcie, ruch inicjuj łokciami, nie unoś hantli powyżej linii barków.</p>
+                        <a href="https://www.youtube.com/results?search_query=wznosy+ramion+bokiem+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <h3 class="atlas-category"><i class="fa-solid fa-hand-fist"></i> Ramiona</h3>
+                <div class="atlas-grid">
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Uginanie ze sztangą</h3>
+                        <p>Klasyczne ćwiczenie na bicepsy. Łokcie blisko tułowia, pełne rozciągnięcie w dole, nie używaj pędu ciała do pomocy.</p>
+                        <a href="https://www.youtube.com/results?search_query=uginanie+ramion+ze+sztang%C4%85+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <div class="atlas-card">
+                        <h3><i class="fa-solid fa-dumbbell"></i> Wyciskanie francuskie</h3>
+                        <p>Ćwiczenie na tricepsy. Leżąc na ławce, sztanga łamana, łokcie wąsko i nieruchomo, opuszczaj ciężar w kierunku czoła.</p>
+                        <a href="https://www.youtube.com/results?search_query=wyciskanie+francuskie+technika" target="_blank" class="btn-link">Zobacz wideo <i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
             </section>
@@ -131,7 +336,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Profesjonalny Kalkulator Fitness. Stworzone z pasją.</p>
+        <p>&copy; 2026 Fitness Pro. Wszystkie prawa zastrzeżone.</p>
     </footer>
 
     <script src="script.js"></script>
